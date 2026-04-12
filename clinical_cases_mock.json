@@ -1,0 +1,58 @@
+[
+  {
+    "case_id": "CASO-001",
+    "patient_id": "PAC-001",
+    "raw_text_summary": "Alta por IVAS / síndrome gripal. Paciente estável, sem dispneia, febre remitida. Orientações de repouso, hidratação e retorno se piora.",
+    "diagnostico_simplificado": "Continuidade pós-alta: quadro respiratório leve (síndrome gripal)",
+    "plano_acao_hoje": "Repouso relativo, hidratação oral abundante, observar temperatura 2x ao dia, evitar aglomerações até melhora completa.",
+    "medicacoes": [
+      "Analgésico/antitérmico conforme prescrição médica do episódio de alta",
+      "Não iniciar antibiótico sem orientação médica"
+    ],
+    "sinais_alerta_red_flags": [
+      "Dispneia ou falta de ar em repouso",
+      "Febre persistente acima de 3 dias ou retorno da febre",
+      "Confusão mental ou sonolência excessiva"
+    ],
+    "risco_continuidade": "baixo",
+    "teach_back_status": "pendente",
+    "acao_sugerida": "Reforçar sinais de alerta e data de retorno se sintomas persistirem"
+  },
+  {
+    "case_id": "CASO-002",
+    "patient_id": "PAC-002",
+    "raw_text_summary": "Alta por nefrolitíase com cólica resolvida. Cálculo pequeno com boa expectativa de eliminação. Orientação hidratação e controle da dor.",
+    "diagnostico_simplificado": "Continuidade pós-alta: nefrolitíase em acompanhamento ambulatorial",
+    "plano_acao_hoje": "Hidratação oral 2–3 L/dia conforme tolerância, filtrar urina se orientado, registrar episódios de dor e presença de sangue na urina.",
+    "medicacoes": [
+      "Analgésico conforme prescrição da alta",
+      "Anti-inflamatório apenas se prescrito e sem contraindicação"
+    ],
+    "sinais_alerta_red_flags": [
+      "Febre com dor lombar (possível complicação infecciosa)",
+      "Anúria ou diminuição marcante do volume urinário",
+      "Náuseas/vômitos incoercíveis ou dor incontrolável"
+    ],
+    "risco_continuidade": "medio",
+    "teach_back_status": "pendente",
+    "acao_sugerida": "Agendar retorno urologia/nefro conforme alta e reforçar hidratação"
+  },
+  {
+    "case_id": "CASO-003",
+    "patient_id": "PAC-003",
+    "raw_text_summary": "Alta com dor abdominal em investigação. Exames iniciais inconclusivos. Orientação retorno imediato se sinais de alarme.",
+    "diagnostico_simplificado": "Continuidade pós-alta: dor abdominal com vigilância reforçada",
+    "plano_acao_hoje": "Dieta leve conforme tolerância, evitar anti-inflamatórios sem orientação, registrar horário e características da dor.",
+    "medicacoes": [
+      "Analgésico leve apenas se prescrito na alta"
+    ],
+    "sinais_alerta_red_flags": [
+      "Dor intensa ou em progressão",
+      "Sinais de sangramento digestivo (vômitos com sangue, fezes escuras)",
+      "Febre, rigidez abdominal ou desmaio"
+    ],
+    "risco_continuidade": "alto",
+    "teach_back_status": "pendente",
+    "acao_sugerida": "Encaminhar avaliação presencial urgente se qualquer red flag; follow-up em 24–48h"
+  }
+]
