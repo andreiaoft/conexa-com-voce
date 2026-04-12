@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { submitTeachBack } from "../api.js";
 import { useAsyncAction } from "../hooks/useAsyncAction.js";
@@ -88,11 +88,14 @@ function selectPtBrVoice() {
 }
 
 /**
- * Ordem de leitura: saudação → o que fazer hoje → medicações →
+ * Ordem de leitura: saudação → diagnóstico → o que fazer hoje → medicações →
  * alerta de alergia (se houver medicações) → sinais de alerta → despedida.
  */
 function buildSpeechText(plan) {
-  const parts = [plan.diagnostico_simplificado];
+  const parts = [
+    "Olá! Sou o assistente da Conexa e preparei seu roteiro de recuperação.",
+    `O seu diagnóstico é: ${plan.diagnostico_simplificado}.`,
+  ];
   parts.push(`O que fazer hoje: ${plan.plano_acao_hoje}.`);
 
   if (plan.medicacoes.length > 0) {
@@ -213,6 +216,14 @@ function PatientView({ plan, patientId, onTeachBackComplete }) {
   const [success, setSuccess] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const { loading, error, run } = useAsyncAction("Falha ao registar confirmação.");
+
+  useEffect(() => {
+    setUnderstood(false);
+    setNotes("");
+    setSuccess(false);
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    setSpeaking(false);
+  }, [patientId]);
 
   if (!plan) {
     return (

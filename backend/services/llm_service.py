@@ -28,11 +28,11 @@ moderada com antibioticoterapia em curso, diabetes descompensada).
 faringite viral).
 
 Formato de saída — JSON estrito com os campos:
-- diagnostico_simplificado: SEMPRE siga esta estrutura exata: comece com a saudação \
-"Olá! Sou o assistente da Conexa e preparei seu roteiro de recuperação.", seguida de \
-um resumo simples do quadro clínico em linguagem acessível (nível de uma criança de 12 \
-anos), e termine com a despedida "Desejamos uma ótima recuperação. Conte com a gente!". \
-NUNCA use a palavra "Diagnóstico" neste campo.
+- diagnostico_simplificado: rótulo clínico curto e direto. MÁXIMO de 4 palavras. \
+Use terminologia médica concisa que identifique o quadro do paciente. \
+Exemplos corretos: "Pós-Angioplastia Coronária", "Diabetes Gestacional", \
+"Síndrome Gripal", "Nefrolitíase em Alta", "Suspeita de Apendicite Aguda". \
+NUNCA inclua saudações, frases completas, explicações ou a palavra "Diagnóstico".
 - plano_acao_hoje: ações prioritárias do dia em linguagem acessível
 - medicacoes: lista de strings com as medicações já prescritas, simplificadas
 - sinais_alerta_red_flags: lista de strings com sinais que exigem retorno imediato
