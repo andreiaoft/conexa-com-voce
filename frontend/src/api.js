@@ -1,31 +1,43 @@
 /**
- * Cliente de API centralizado — único módulo que conhece VITE_API_URL.
- *
- * Contrato de erros:
- *   - 5xx: mensagem genérica (sem vazar internals do servidor)
- *   - 4xx: campo `detail` do Pydantic (validação, seguro para exibir)
- *   - Rede indisponível: mensagem amigável
- *
- * Componentes nunca devem chamar fetch diretamente; usam apenas as funções
- * exportadas abaixo e capturam erros via toErrorMessage().
+ * Cliente de API centralizado.
+ * - Em desenvolvimento local: usa localhost se VITE_API_URL não estiver definido
+ * - Em produção: usa VITE_API_URL
  */
 
-const API_BASE = import.meta.env.VITE_API_URL ?? "";
+const rawBase =
+  import.meta.env.VITE_API_URL ??
+  (import.meta.env.DEV ? "http://127.0.0.1:8000" : "");
+
+const API_BASE = rawBase.replace(/\/$/, "");
+const REQUEST_TIMEOUT_MS = 25000;
 
 async function apiFetch(path, options = {}) {
   const isFormData = options.body instanceof FormData;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
   let res;
+
   try {
     res = await fetch(`${API_BASE}${path}`, {
       ...options,
-      // FormData: deixar o browser definir Content-Type com o boundary correto.
+      signal: controller.signal,
       headers: isFormData
         ? (options.headers ?? {})
         : { "Content-Type": "application/json", ...(options.headers ?? {}) },
     });
-  } catch {
+  } catch (err) {
+    clearTimeout(timeoutId);
+
+    if (err?.name === "AbortError") {
+      throw new Error("A requisição demorou demais. Tente novamente.");
+    }
+
     throw new Error("Sem conexão com o servidor. Verifique sua rede.");
   }
+
+  clearTimeout(timeoutId);
 
   if (res.status === 204) return null;
 
@@ -41,11 +53,6 @@ async function apiFetch(path, options = {}) {
   throw new Error(body.detail ?? `Erro ${res.status}`);
 }
 
-/**
- * Extrai uma mensagem legível de qualquer valor capturado em catch.
- * Centraliza o padrão (err instanceof Error ? err.message : fallback)
- * para que os componentes não repitam essa lógica.
- */
 export function toErrorMessage(err, fallback = "Ocorreu um erro inesperado.") {
   return err instanceof Error ? err.message : fallback;
 }

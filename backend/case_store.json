@@ -1,0 +1,31 @@
+[
+  {
+    "case_id": "CASO-3B99A39E",
+    "patient_id": "PAC-7029D01C",
+    "diagnostico_simplificado": "Síndrome Gripal Leve",
+    "risco_continuidade": "alto",
+    "teach_back_status": "pendente",
+    "sinais_alerta_red_flags": [
+      "Falta de ar",
+      "Febre persistente",
+      "Piora do estado geral",
+      "Dificuldade para se alimentar"
+    ],
+    "acao_sugerida": "Avaliação presencial urgente; follow-up em até 24h."
+  },
+  {
+    "case_id": "CASO-74FD9338",
+    "patient_id": "PAC-15FA038C",
+    "diagnostico_simplificado": "Nefrolitíase Distal Direita",
+    "risco_continuidade": "alto",
+    "teach_back_status": "pendente",
+    "sinais_alerta_red_flags": [
+      "Febre",
+      "Vômitos persistentes",
+      "Piora da dor",
+      "Dificuldade para urinar",
+      "Mal-estar importante"
+    ],
+    "acao_sugerida": "Avaliação presencial urgente; follow-up em até 24h."
+  }
+]
