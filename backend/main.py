@@ -166,14 +166,14 @@ def _classificar_risco_deterministico(raw_text: str) -> RiscoContinuidade:
         "alta com orientacoes",
     ]
 
-    if _contains_any(text, termos_alto):
-        return RiscoContinuidade.alto
+    if _contains_any(text, termos_baixo):
+        return RiscoContinuidade.baixo
 
     if _contains_any(text, termos_medio):
         return RiscoContinuidade.medio
 
-    if _contains_any(text, termos_baixo):
-        return RiscoContinuidade.baixo
+    if _contains_any(text, termos_alto):
+        return RiscoContinuidade.alto
 
     return RiscoContinuidade.medio
 
